@@ -1,0 +1,12 @@
+Check_ID,Check_Name,Status,Metric,Notes
+1.1,File Existence,PASS,6/6 files,All H1 artifacts must exist.
+2.1,Sample Size,PASS,250000 loans,Target is ~250k.
+3.1,Train/Test Overlap,PASS,"Train Ends 201306, Test Starts 201307",Strict temporal split.
+4.1,Target Rate Stability,PASS,"Train: 2.44%, Test: 2.79%",Default rates between train/test should be reasonably close.
+5.1,H1 Feature Set,PASS,Raw UPB Present,H1 must use raw UPB; no ratio-based features.
+5.2,Binary Delinquency,FAIL,Values must be 0/1/NA for model input.,""
+6.1,Graph Keys,PASS,Required for graph construction.,""
+6.2,Key Completeness,PASS,0 missing,Nodes with missing keys will be isolated.
+7.1,Missing Values,PASS,0.00% in 'Loan_Sequence_Number',High missing values may affect modeling.
+7.2,Duplicate Rows,PASS,0 duplicates found,Each loan-month should appear only once.
+9.1,Preprocessing Params Validity,PASS,0 invalid params,Scaling params must be non-NA and train-only.

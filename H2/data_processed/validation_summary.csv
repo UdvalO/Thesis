@@ -1,0 +1,14 @@
+Check_ID,Check_Name,Status,Metric,Notes
+1.1,File Existence,PASS,7/7 files found,All required .rds artifacts must be present.
+3.1,Performance Time Window,PASS,201107 to 201412,Expected: 201107 to 201412
+4.1,Train/Test Overlap,PASS,"Train ends 201306, Test starts 201307",Train snapshot dates must be strictly less than test snapshot dates.
+5.1,Target Rate Stability,PASS,"Train: 2.45%, Test: 2.86%",Checks if default rates between train/test sets are reasonably close.
+5.2,Target Detail File,PASS,target_check.csv,Generated file with per-snapshot default rates.
+6.1,Cohort Consistency,PASS,"Orig: 2789229, Perf: 2789229 loans",Checks if 01_data_import_cleaner.R correctly synchronized loan cohorts.
+7.1,Missing Values,PASS,0.00% in 'Loan_Sequence_Number',Checks for high percentage of missing values in any feature column.
+7.2,Duplicate Rows,PASS,0 duplicates found,Each loan should have at most one record per month.
+8.2,Feature Stats Generation,PASS,21 features analyzed,"Generated distribution statistics (mean, sd, etc.) for all numeric columns."
+9.1,Preprocessing Params Validity,PASS,0 invalid params,Scaling parameters must be non-NA and calculated only on train data.
+10.1,Feature Monotonicity,PASS,0 non-monotonic rows,The engineered loan age must increase by 1 each month for each loan.
+11.1,Snapshot Coverage,PASS,Min loans in a snapshot: 123304,Ensures each time step has enough data to form a meaningful graph.
+11.2,Feature Completeness,PASS,"",Checks if the final dataset contains all columns needed for the Python models.

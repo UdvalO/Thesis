@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Teaching Guide: Credit Risk and Graph Neural Networks</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            max-width: 21cm;
+            margin: 0 auto;
+            padding: 2cm;
+            background: white;
+            color: #000;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 24pt;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            page-break-after: avoid;
+        }
+        h2 {
+            color: #34495e;
+            font-size: 18pt;
+            margin-top: 25px;
+            page-break-after: avoid;
+        }
+        h3 {
+            color: #555;
+            font-size: 14pt;
+            margin-top: 20px;
+            page-break-after: avoid;
+        }
+        p {
+            text-align: justify;
+            margin: 10px 0;
+        }
+        .formula {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 11pt;
+            page-break-inside: avoid;
+        }
+        .example {
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+        .key-concept {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        strong {
+            color: #2c3e50;
+        }
+        .toc {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .toc h2 {
+            margin-top: 0;
+        }
+        .toc ul {
+            list-style-type: none;
+        }
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; border: none;">Comprehensive Teaching Guide</h1>
+    <h2 style="text-align: center; color: #3498db;">Understanding Credit Risk and Graph Neural Networks</h2>
+    <p style="text-align: center; font-style: italic; margin-top: 20px;">A Complete Guide to Understanding "Attention-based Dynamic Multilayer Graph Neural Networks for Loan Default Prediction"</p>
+
+    <div class="page-break"></div>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#part1">Part 1: Credit Fundamentals</a></li>
+            <li><a href="#part2">Part 2: Key Credit Concepts</a></li>
+            <li><a href="#part3">Part 3: Network Concepts</a></li>
+            <li><a href="#part4">Part 4: Machine Learning Foundations</a></li>
+            <li><a href="#part5">Part 5: Graph Neural Networks (GNNs)</a></li>
+            <li><a href="#part6">Part 6: Recurrent Neural Networks (RNNs)</a></li>
+            <li><a href="#part7">Part 7: Attention Mechanism</a></li>
+            <li><a href="#part8">Part 8: The Complete Model Architecture</a></li>
+            <li><a href="#part9">Part 9: Understanding the Loss Function</a></li>
+            <li><a href="#part10">Part 10: Evaluation Metrics</a></li>
+            <li><a href="#part11">Part 11: Understanding the Data</a></li>
+            <li><a href="#part12">Part 12: Key Results and Insights</a></li>
+            <li><a href="#part13">Part 13: Technical Implementation Details</a></li>
+            <li><a href="#part14">Part 14: Practical Applications</a></li>
+            <li><a href="#part15">Part 15: Limitations and Future Directions</a></li>
+            <li><a href="#part16">Part 16: Mathematical Notation Guide</a></li>
+            <li><a href="#part17">Part 17: Connecting Everything Together</a></li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1 id="part1">Part 1: Credit Fundamentals</h1>
+
+    <h2>What is Credit?</h2>
+    <p>Credit is when someone borrows money with a promise to pay it back later, usually with interest. Common examples include:</p>
+    <ul>
+        <li><strong>Mortgages:</strong> Loans to buy homes</li>
+        <li><strong>Credit cards:</strong> Short-term borrowing for purchases</li>
+        <li><strong>Personal loans:</strong> Fixed amounts borrowed for various purposes</li>
+    </ul>
+
+    <h2>Credit Risk: The Core Problem</h2>
+    <div class="key-concept">
+        <p><strong>Credit risk</strong> is the possibility that a borrower won't repay their loan. This is also called <strong>default risk</strong>.</p>
+        <p><strong>Default</strong> means failing to make required loan payments. In this paper, default is defined as being 90+ days late on payments.</p>
+    </div>
+
+    <h2>Why Credit Risk Matters</h2>
+    <ol>
+        <li><strong>For lenders:</strong> Lost money if borrowers don't repay</li>
+        <li><strong>For the economy:</strong> Widespread defaults can trigger financial crises (like 2008)</li>
+        <li><strong>For borrowers:</strong> Affects their ability to get future loans</li>
+    </ol>
+
+    <h2>The Traditional Approach Problem</h2>
+    <p>Traditional credit scoring treats each borrower as independent. But this misses an important reality: <strong>default correlation</strong> - when one person defaults, connected people may be more likely to default too.</p>
+    <div class="example">
+        <p><strong>Think of it like dominoes:</strong> If borrowers are connected through geography or shared lenders, problems can spread through these connections.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1 id="part2">Part 2: Key Credit Concepts</h1>
+
+    <h2>FICO Score</h2>
+    <p>A number (300-850) summarizing someone's credit history. Higher scores mean lower risk. Calculated from:</p>
+    <ul>
+        <li>Payment history</li>
+        <li>Amount owed</li>
+        <li>Length of credit history</li>
+        <li>New credit</li>
+        <li>Types of credit used</li>
+    </ul>
+
+    <h2>Loan-to-Value Ratio (LTV)</h2>
+    <div class="formula">
+LTV = (Loan Amount / Property Value) × 100
+    </div>
+    <div class="example">
+        <p><strong>Example:</strong> $80,000 loan on a $100,000 house = 80% LTV</p>
+        <p>Higher LTV = riskier (borrower has less "skin in the game")</p>
+    </div>
+
+    <h2>Debt-to-Income Ratio (DTI)</h2>
+    <div class="formula">
+DTI = (Monthly Debt Payments / Monthly Income) × 100
+    </div>
+    <div class="example">
+        <p><strong>Example:</strong> $2,000 debt payments, $6,000 income = 33% DTI</p>
+        <p>Higher DTI = riskier (less income left after debt payments)</p>
+    </div>
+
+    <h2>Mortgage Insurance (MI)</h2>
+    <p>Protection for lenders when LTV is high. Expressed as a percentage of the loan amount.</p>
+
+    <h2>Delinquency Status</h2>
+    <p>How late payments are:</p>
+    <ul>
+        <li><strong>Current:</strong> On time</li>
+        <li><strong>30 days delinquent:</strong> 1 month late</li>
+        <li><strong>60 days delinquent:</strong> 2 months late</li>
+        <li><strong>90+ days delinquent:</strong> Considered default</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1 id="part3">Part 3: Network Concepts</h1>
+
+    <h2>What is a Network/Graph?</h2>
+    <p>A mathematical structure showing relationships between entities.</p>
+    <div class="key-concept">
+        <p><strong>Components:</strong></p>
+        <ul>
+            <li><strong>Nodes (vertices):</strong> The entities (in this paper: borrowers/loans)</li>
+            <li><strong>Edges:</strong> Connections between nodes (in this paper: shared geography or lender)</li>
+        </ul>
+    </div>
+
+    <h2>Types of Networks in This Paper</h2>
+
+    <h3>Single Layer Network</h3>
+    <p>All nodes connected by ONE type of relationship.</p>
+    <div class="example">
+        <p><strong>Example:</strong> Borrowers connected only by geographical area</p>
+    </div>
+
+    <h3>Multilayer Network</h3>
+    <p>Nodes connected by MULTIPLE types of relationships simultaneously.</p>
+    <div class="example">
+        <p><strong>Example:</strong> Borrowers connected by BOTH geography AND lending company</p>
+        <p>Think of it like social networks: you might be connected to someone through work AND through shared hobbies. A multilayer network captures both.</p>
+    </div>
+
+    <h3>Static vs Dynamic Networks</h3>
+    <ul>
+        <li><strong>Static:</strong> Network structure frozen at one point in time</li>
+        <li><strong>Dynamic:</strong> Network evolves over time (nodes/edges/features change)</li>
+    </ul>
+    <div class="key-concept">
+        <p>This paper uses <strong>dynamic multilayer networks</strong> - the most realistic but also most complex approach.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1 id="part4">Part 4: Machine Learning Foundations</h1>
+
+    <h2>Neural Networks Basics</h2>
+    <p>Inspired by the human brain, neural networks learn patterns from data.</p>
+
+    <h3>Key components:</h3>
+    <ol>
+        <li><strong>Input layer:</strong> Raw data goes in</li>
+        <li><strong>Hidden layers:</strong> Process and transform data</li>
+        <li><strong>Output layer:</strong> Final prediction</li>
+    </ol>
+
+    <h3>Training process:</h3>
+    <ul>
+        <li>Feed data through network</li>
+        <li>Compare predictions to actual outcomes</li>
+        <li>Adjust internal weights to improve</li>
+        <li>Repeat thousands of times</li>
+    </ul>
+
+    <h2>Why Neural Networks for This Problem?</h2>
+    <p>Traditional statistics (like logistic regression) assume linear relationships. Neural networks can capture complex, non-linear patterns like:</p>
+    <ul>
+        <li>How credit score and delinquency status interact</li>
+        <li>How connections between borrowers propagate risk</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1 id="part5">Part 5: Graph Neural Networks (GNNs)</h1>
+
+    <h2>The Challenge</h2>
+    <p>Regular neural networks work on grid-like data (images, tables). But networks/graphs have irregular structure - each node has different numbers of neighbors.</p>
+
+    <h2>How GNNs Work</h2>
+    <p>GNNs learn by passing messages between connected nodes. Each node aggregates information from its neighbors.</p>
+    <div class="key-concept">
+        <p><strong>Intuition:</strong> Your default risk depends not just on YOUR features, but also on features of connected borrowers.</p>
+    </div>
+
+    <h2>Two GNN Types Used in This Paper</h2>
+
+    <h3>1. Graph Convolutional Network (GCN)</h3>
+    <p><strong>Key idea:</strong> Aggregate neighbor information with equal weights.</p>
+    <div class="formula">
+Simplified: New node features = Average of (own features + all neighbor features)
+    </div>
+
+    <p><strong>The actual formula from the paper:</strong></p>
+    <div class="formula">
+Z = D̃<sup>-1/2</sup> Ã D̃<sup>-1/2</sup> X W<sup>T</sup>
+    </div>
+
+    <p>Breaking this down:</p>
+    <ul>
+        <li><code>Ã</code>: Adjacency matrix (who's connected to whom) + self-connections</li>
+        <li><code>D̃</code>: Degree matrix (how many connections each node has)</li>
+        <li><code>X</code>: Original node features</li>
+        <li><code>W<sup>T</sup></code>: Learnable weights</li>
+        <li><code>Z</code>: New node embeddings</li>
+    </ul>
+    <p>The D̃<sup>-1/2</sup> terms normalize by connection count (prevents nodes with many connections from dominating).</p>
+
+    <h3>2. Graph Attention Network (GAT)</h3>
+    <p><strong>Key idea:</strong> Not all neighbors are equally important. Learn attention weights.</p>
+
+    <p><strong>Step 1: Calculate attention scores</strong></p>
+    <div class="formula">
+e<sub>ij</sub> = LeakyReLU(a<sup>T</sup> [W X<sub>i</sub> || W X<sub>j</sub>])
+    </div>
+    <ul>
+        <li>Computes how important neighbor j is to node i</li>
+        <li><code>||</code> means concatenate (stick together)</li>
+        <li><code>LeakyReLU</code>: Activation function (adds non-linearity)</li>
+    </ul>
+
+    <p><strong>Step 2: Normalize scores</strong></p>
+    <div class="formula">
+α<sub>ij</sub> = exp(e<sub>ij</sub>) / Σ<sub>k</sub> exp(e<sub>ik</sub>)
+    </div>
+    <ul>
+        <li>Converts scores to probabilities (sum to 1)</li>
+        <li>This is the <strong>softmax function</strong></li>
+    </ul>
+
+    <p><strong>Step 3: Aggregate with weights</strong></p>
+    <div class="formula">
+Z<sub>i</sub> = Σ<sub>j</sub> α<sub>ij</sub> W X<sub>j</sub>
+    </div>
+    <ul>
+        <li>Weighted sum of neighbor features</li>
+        <li>More important neighbors contribute more</li>
+    </ul>
+
+    <div class="key-concept">
+        <p><strong>Intuition:</strong> In a lending network, a connection to someone with terrible credit should matter more than a connection to someone with excellent credit. GAT learns these differences automatically.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1 id="part6">Part 6: Recurrent Neural Networks (RNNs)</h1>
+
+    <h2>The Temporal Challenge</h2>
+    <p>Credit risk evolves over time. Someone current on payments today might become delinquent next month. We need models that understand sequences.</p>
+
+    <h2>How RNNs Work</h2>
+    <p>RNNs process sequences one step at a time, maintaining a "memory" of what came before.</p>
+    <div class="key-concept">
+        <p><strong>Key concept:</strong> At each time step, the RNN:</p>
+        <ol>
+            <li>Takes current input</li>
+            <li>Recalls previous hidden state (memory)</li>
+            <li>Produces new hidden state</li>
+            <li>Makes prediction</li>
+        </ol>
+    </div>
+
+    <h2>Two RNN Types Used</h2>
+
+    <h3>1. Long Short-Term Memory (LSTM)</h3>
+    <p><strong>Problem it solves:</strong> Basic RNNs forget long-term patterns.</p>
+    <p><strong>Solution:</strong> Special "gates" that control what to remember and forget.</p>
+
+    <p><strong>The three gates:</strong></p>
+
+    <p><strong>Forget Gate</strong> (What to discard from memory):</p>
+    <div class="formula">
+F<sup>(t)</sup> = σ(Z<sup>(t)</sup> W<sub>fi</sub> + H<sup>(t-1)</sup> W<sub>fh</sub> + b<sub>f</sub>)
+    </div>
+
+    <p><strong>Input Gate</strong> (What new information to store):</p>
+    <div class="formula">
+I<sup>(t)</sup> = σ(Z<sup>(t)</sup> W<sub>ii</sub> + H<sup>(t-1)</sup> W<sub>ih</sub> + b<sub>i</sub>)
+    </div>
+
+    <p><strong>Output Gate</strong> (What to output):</p>
+    <div class="formula">
+O<sup>(t)</sup> = σ(Z<sup>(t)</sup> W<sub>oi</sub> + H<sup>(t-1)</sup> W<sub>oh</sub> + b<sub>o</sub>)
+    </div>
+
+    <p><strong>Memory Cell Update:</strong></p>
+    <div class="formula">
+C<sup>(t)</sup> = F<sup>(t)</sup> ⊙ C<sup>(t-1)</sup> + I<sup>(t)</sup> ⊙ tanh(Z<sup>(t)</sup> W<sub>ci</sub> + H<sup>(t-1)</sup> W<sub>ch</sub> + b<sub>c</sub>)
+    </div>
+
+    <p><strong>New Hidden State:</strong></p>
+    <div class="formula">
+H<sup>(t)</sup> = O<sup>(t)</sup> ⊙ tanh(C<sup>(t)</sup>)
+    </div>
+
+    <p><strong>Notation explained:</strong></p>
+    <ul>
+        <li><code>σ</code>: Sigmoid function (outputs 0 to 1, acts like a gate)</li>
+        <li><code>⊙</code>: Element-wise multiplication</li>
+        <li><code>tanh</code>: Hyperbolic tangent (outputs -1 to 1, adds non-linearity)</li>
+        <li><code>W</code>: Weight matrices (learned parameters)</li>
+        <li><code>b</code>: Bias terms (learned parameters)</li>
+        <li><code>Z<sup>(t)</sup></code>: Input at time t (from GNN)</li>
+        <li><code>H<sup>(t)</sup></code>: Hidden state at time t</li>
+        <li><code>C<sup>(t)</sup></code>: Memory cell at time t</li>
+    </ul>
+
+    <div class="key-concept">
+        <p><strong>Intuition:</strong> Think of LSTM like a smart notepad. The forget gate erases irrelevant old notes, the input gate writes new important information, and the output gate decides what to say based on the notes.</p>
+    </div>
+
+    <h3>2. Gated Recurrent Unit (GRU)</h3>
+    <p><strong>Simplified version of LSTM</strong> with only two gates:</p>
+
+    <p><strong>Reset Gate</strong> (How much past to forget):</p>
+    <div class="formula">
+R<sup>(t)</sup> = σ(Z<sup>(t)</sup> W<sub>ri</sub> + H<sup>(t-1)</sup> W<sub>rh</sub> + b<sub>r</sub>)
+    </div>
+
+    <p><strong>Update Gate</strong> (Balance between past and present):</p>
+    <div class="formula">
+U<sup>(t)</sup> = σ(Z<sup>(t)</sup> W<sub>ui</sub> + H<sup>(t-1)</sup> W<sub>uh</sub> + b<sub>u</sub>)
+    </div>
+
+    <p><strong>New Hidden State:</strong></p>
+    <div class="formula">
+H<sup>(t)</sup> = (1 - U<sup>(t)</sup>) ⊙ H<sup>(t-1)</sup> + U<sup>(t)</sup> ⊙ tanh[Z<sup>(t)</sup> W<sub>hi</sub> + (R<sup>(t)</sup> ⊙ H<sup>(t-1)</sup>) W<sub>hh</sub> + b<sub>h</sub>]
+    </div>
+
+    <p><strong>Differences from LSTM:</strong></p>
+    <ul>
+        <li>Simpler (fewer parameters)</li>
+        <li>Faster to train</li>
+        <li>No separate memory cell</li>
+        <li>Often similar performance to LSTM</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1 id="part7">Part 7: Attention Mechanism</h1>
+
+    <h2>The Problem</h2>
+    <p>When processing 6 months of data, are all months equally important? Probably not. Recent behavior likely matters more.</p>
+
+    <h2>The Solution: Attention</h2>
+    <p>Learn to weight different time steps by importance.</p>
+
+    <p><strong>Step 1: Compute unnormalized scores</strong></p>
+    <div class="formula">
+s<sup>(t)</sup> = a<sub>h</sub> H<sup>(t)</sup> W<sub>h</sub>
+    </div>
+    <p>Each time step gets a score</p>
+
+    <p><strong>Step 2: Normalize with softmax</strong></p>
+    <div class="formula">
+β<sup>(t)</sup> = exp(s<sup>(t)</sup>) / Σ<sub>k</sub> exp(s<sup>(k)</sup>)
+    </div>
+    <p>Converts to probability distribution</p>
+
+    <p><strong>Step 3: Weighted combination</strong></p>
+    <div class="formula">
+H<sub>att</sub> = Σ<sub>t</sub> β<sup>(t)</sup> H<sup>(t)</sup>
+    </div>
+    <p>Combine all time steps weighted by importance</p>
+
+    <div class="key-concept">
+        <p><strong>Intuition:</strong> If you're predicting whether someone will default, their payment behavior last month is probably more relevant than 6 months ago. Attention learns this automatically.</p>
+        <p><strong>In the paper's results:</strong> Attention scores increase over time, confirming recent months matter more.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1 id="part8">Part 8: The Complete Model Architecture</h1>
+
+    <h2>DYMGNN: Dynamic Multilayer Graph Neural Networks</h2>
+    <p>The paper proposes combining everything:</p>
+
+    <p><strong>Step 1: Process each time snapshot with GNN</strong></p>
+    <div class="formula">
+Z<sup>(t)</sup> = GNN(X<sup>(t)</sup>, A<sup>(t)</sup>)
+    </div>
+    <ul>
+        <li>For each month, encode network structure and node features</li>
+        <li>Output: node embeddings capturing local network information</li>
+    </ul>
+
+    <p><strong>Step 2: Process temporal sequence with RNN</strong></p>
+    <div class="formula">
+H<sup>(t)</sup>, C<sup>(t)</sup> = LSTM(Z<sup>(t)</sup>, H<sup>(t-1)</sup>, C<sup>(t-1)</sup>)
+    </div>
+    <ul>
+        <li>Feed GNN embeddings through time</li>
+        <li>Output: temporal embeddings capturing evolution</li>
+    </ul>
+
+    <p><strong>Step 3: Apply attention (optional)</strong></p>
+    <div class="formula">
+H<sub>att</sub> = Σ<sub>t</sub> β<sup>(t)</sup> H<sup>(t)</sup>
+    </div>
+    <ul>
+        <li>Weight different time steps by importance</li>
+    </ul>
+
+    <p><strong>Step 4: Decode to prediction</strong></p>
+    <ul>
+        <li>Feed final embeddings through regular neural network</li>
+        <li>Output: probability of default in next 12 months</li>
+    </ul>
+
+    <h2>Model Configurations Tested</h2>
+    <p>The paper tests 8 configurations:</p>
+    <ol>
+        <li><strong>GCN-LSTM:</strong> GCN for space, LSTM for time</li>
+        <li><strong>GCN-GRU:</strong> GCN for space, GRU for time</li>
+        <li><strong>GAT-LSTM:</strong> GAT for space, LSTM for time</li>
+        <li><strong>GAT-GRU:</strong> GAT for space, GRU for time</li>
+        <li>Same four with attention mechanism added</li>
+    </ol>
+
+    <div class="key-concept">
+        <p><strong>Winner:</strong> GAT-LSTM-ATT (GAT + LSTM + Attention)</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1 id="part9">Part 9: Understanding the Loss Function</h1>
+
+    <h2>Binary Cross-Entropy Loss</h2>
+    <p>Since we're predicting binary outcomes (default: yes/no), we use binary cross-entropy:</p>
+
+    <div class="formula">
+Loss = -1/n Σ<sub>i</sub> [Y<sub>i</sub> · log(Ŷ<sub>i</sub>) + (1 - Y<sub>i</sub>) · log(1 - Ŷ<sub>i</sub>)]
+    </div>
+
+    <p><strong>Breaking it down:</strong></p>
+    <ul>
+        <li><code>Y<sub>i</sub></code>: True label (1 if defaults, 0 if not)</li>
+        <li><code>Ŷ<sub>i</sub></code>: Predicted probability of default</li>
+        <li><code>n</code>: Number of borrowers</li>
+    </ul>
+
+    <p><strong>How it works:</strong></p>
+    <div class="example">
+        <p><strong>If true label is 1 (defaults):</strong> Loss = -log(Ŷ<sub>i</sub>)</p>
+        <ul>
+            <li>Predicting high probability (near 1) → small loss</li>
+            <li>Predicting low probability (near 0) → huge loss</li>
+        </ul>
+        
+        <p><strong>If true label is 0 (doesn't default):</strong> Loss = -log(1 - Ŷ<sub>i</sub>)</p>
+        <ul>
+            <li>Predicting low probability (near 0) → small loss</li>
+            <li>Predicting high probability (near 1) → huge loss</li>
+        </ul>
+    </div>
+
+    <p><strong>Training:</strong> Adjust model weights to minimize this loss.</p>
+
+    <div class="page-break"></div>
+
+    <h1 id="part10">Part 10: Evaluation Metrics</h1>
+
+    <h2>Why Not Just Accuracy?</h2>
+    <p>The dataset is <strong>imbalanced</strong>: only 5% default (7,426 out of 148,520).</p>
+    <div class="example">
+        <p>A dumb model predicting "nobody defaults" would be 95% accurate but useless!</p>
+    </div>
+
+    <h2>AUC (Area Under the Curve)</h2>
+    <p><strong>Full name:</strong> Area Under the Receiver Operating Characteristic Curve</p>
+    <p><strong>What it measures:</strong> How well the model separates defaulters from non-defaulters.</p>
+
+    <p><strong>Scale:</strong> 0 to 1</p>
+    <ul>
+        <li>0.5 = random guessing</li>
+        <li>1.0 = perfect separation</li>
+        <li>0.7-0.8 = acceptable</li>
+        <li>0.8-0.9 = excellent</li>
+    </ul>
+
+    <div class="key-concept">
+        <p><strong>Intuition:</strong> If you randomly pick one defaulter and one non-defaulter, AUC is the probability the model assigns a higher default probability to the actual defaulter.</p>
+    </div>
+
+    <h2>F₁ Score</h2>
+    <p>Balances two concerns:</p>
+    <ul>
+        <li><strong>Precision:</strong> Of those predicted to default, how many actually did?</li>
+        <li><strong>Recall:</strong> Of those who actually defaulted, how many did we catch?</li>
+    </ul>
+
+    <div class="formula">
+F₁ = 2 × (Precision × Recall) / (Precision + Recall)
+    </div>
+
+    <p><strong>Scale:</strong> 0 to 1 (higher is better)</p>
+    <p><strong>Why it matters:</strong> Missing defaults is costly (lost money), but falsely predicting default is also costly (rejected good customers).</p>
+
+    <div class="page-break"></div>
+
+    <h1 id="part11">Part 11: Understanding the Data</h1>
+
+    <h2>Freddie Mac Dataset</h2>
+    <ul>
+        <li><strong>Source:</strong> U.S. mortgage loans (home loans)</li>
+        <li><strong>Time period:</strong> 2009-2010 originations, tracked through 2013</li>
+        <li><strong>Why these years:</strong> Enough time passed to observe defaults (loans originated in 2009 had 3-4 years to default by 2013)</li>
+    </ul>
+
+    <h2>Network Construction</h2>
+
+    <p><strong>Geographical connections:</strong> Borrowers in same area (first 2 digits of zip code match)</p>
+    <div class="example">
+        <p><strong>Example:</strong> 90210 and 90211 are connected</p>
+    </div>
+
+    <p><strong>Company connections:</strong> Borrowers using same lending company</p>
+
+    <p><strong>Why these connections matter:</strong></p>
+    <ul>
+        <li><strong>Geographical:</strong> Local economic downturns affect neighbors</li>
+        <li><strong>Company:</strong> Lender business practices affect all their borrowers</li>
+    </ul>
+
+    <h2>Temporal Structure</h2>
+
+    <p><strong>Training:</strong> 18 months (Jan 2012 - Jun 2013)</p>
+    <ul>
+        <li>Divided into 13 rolling windows</li>
+        <li>Each window: 6 consecutive months</li>
+        <li>Example window 1: Jan-Jun 2012</li>
+        <li>Example window 2: Feb-Jul 2012</li>
+        <li>Target: Predict default in 12 months after window ends</li>
+    </ul>
+
+    <p><strong>Testing:</strong> 6 months (Jul-Dec 2013)</p>
+    <ul>
+        <li>One window</li>
+        <li>Target: Predict default by Dec 2014</li>
+    </ul>
+
+    <p><strong>Why 6 months?</strong> Balance between:</p>
+    <ul>
+        <li>Too short: Not enough behavioral information</li>
+        <li>Too long: Increased computation, diminishing returns</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1 id="part12">Part 12: Key Results and Insights</h1>
+
+    <h2>Performance Comparison</h2>
+
+    <table>
+        <tr>
+            <th>Model Type</th>
+            <th>Model Name</th>
+            <th>AUC</th>
+            <th>F₁ Score</th>
+        </tr>
+        <tr>
+            <td rowspan="3">Baseline (no network)</td>
+            <td>Logistic Regression</td>
+            <td>0.796</td>
+            <td>0.824</td>
+        </tr>
+        <tr>
+            <td>XGBoost</td>
+            <td>0.805</td>
+            <td>0.837</td>
+        </tr>
+        <tr>
+            <td>Deep Neural Network</td>
+            <td>0.803</td>
+            <td>0.833</td>
+        </tr>
+        <tr>
+            <td>Static network</td>
+            <td>Static GAT (double layer)</td>
+            <td>0.763</td>
+            <td>0.817</td>
+        </tr>
+        <tr>
+            <td>Dynamic network</td>
+            <td>GAT-LSTM-ATT (double layer)</td>
+            <td><strong>0.812</strong></td>
+            <td><strong>0.851</strong></td>
+        </tr>
+    </table>
+
+    <div class="key-concept">
+        <p><strong>Key finding:</strong> Adding network dynamics provides meaningful improvement (+0.87% AUC, +1.67% F₁ over best baseline).</p>
+    </div>
+
+    <h2>Why the Improvement Matters</h2>
+    <p>In lending, even 1% improvement in prediction can mean:</p>
+    <ul>
+        <li>Millions of dollars in prevented losses</li>
+        <li>Better lending decisions</li>
+        <li>More accurate risk pricing</li>
+    </ul>
+
+    <h2>Feature Importance (via Shapley values)</h2>
+
+    <p><strong>Top 4 most important features:</strong></p>
+    <ol>
+        <li><strong>Payment delinquency</strong> (if_delq_sts): By far most important</li>
+        <li><strong>FICO score:</strong> Strong indicator</li>
+        <li><strong>Number of borrowers:</strong> Multiple borrowers = lower risk</li>
+        <li><strong>Months remaining:</strong> More time = more uncertainty</li>
+    </ol>
+
+    <p><strong>Insights from the model:</strong></p>
+    <ul>
+        <li>Recent payment behavior dominates predictions</li>
+        <li>Low FICO + delinquency = especially high risk (interaction effect)</li>
+        <li>Fewer borrowers (single applicants) are riskier</li>
+    </ul>
+
+    <h2>Temporal Attention Patterns</h2>
+    <p>The attention mechanism learned to weight recent months more heavily:</p>
+    <ul>
+        <li>Month 1: ~10% attention</li>
+        <li>Month 6: ~60% attention</li>
+    </ul>
+
+    <div class="key-concept">
+        <p><strong>Interpretation:</strong> Recent behavior is most predictive, confirming financial intuition.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1 id="part13">Part 13: Technical Implementation Details</h1>
+
+    <h2>Hyperparameters</h2>
+    <p>Settings that control model training:</p>
+
+    <table>
+        <tr>
+            <th>Hyperparameter</th>
+            <th>Value</th>
+            <th>Explanation</th>
+        </tr>
+        <tr>
+            <td>Epochs</td>
+            <td>200</td>
+            <td>Complete passes through training data</td>
+        </tr>
+        <tr>
+            <td>Early stopping</td>
+            <td>50</td>
+            <td>Stop if no improvement for 50 epochs</td>
+        </tr>
+        <tr>
+            <td>Learning rate</td>
+            <td>0.001</td>
+            <td>How big each update step is</td>
+        </tr>
+        <tr>
+            <td>Optimizer</td>
+            <td>Adam</td>
+            <td>Adaptive learning rate algorithm</td>
+        </tr>
+    </table>
+
+    <h2>Computational Resources</h2>
+    <ul>
+        <li><strong>GPU:</strong> NVIDIA A100 (high-end machine learning processor)</li>
+        <li><strong>Memory:</strong> 40 GB</li>
+        <li><strong>Training time:</strong> ~2-12 hours depending on configuration</li>
+    </ul>
+
+    <h2>Preventing Overfitting</h2>
+
+    <p><strong>Problem:</strong> Model might memorize training data instead of learning patterns.</p>
+
+    <p><strong>Solutions used:</strong></p>
+    <ol>
+        <li><strong>Dropout:</strong> Randomly ignore 50% of nodes during training</li>
+        <li><strong>Early stopping:</strong> Stop training when validation performance plateaus</li>
+        <li><strong>Validation set:</strong> Separate data to monitor generalization</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <h1 id="part14">Part 14: Practical Applications</h1>
+
+    <h2>How Lenders Could Use This</h2>
+
+    <h3>1. Loan Approval Decisions</h3>
+    <ul>
+        <li><strong>Traditional model:</strong> Approve if credit score > 700</li>
+        <li><strong>This model:</strong> Also consider network position and recent behavior</li>
+        <li><strong>Result:</strong> Better identification of risky applicants with good credit scores</li>
+    </ul>
+
+    <h3>2. Risk Pricing</h3>
+    <ul>
+        <li>Higher predicted default probability → higher interest rate</li>
+        <li>More accurate predictions → fairer pricing</li>
+    </ul>
+
+    <h3>3. Early Warning System</h3>
+    <ul>
+        <li>Monitor borrowers month-by-month</li>
+        <li>Detect increasing risk before default occurs</li>
+        <li>Intervene with payment plans or refinancing</li>
+    </ul>
+
+    <h3>4. Portfolio Management</h3>
+    <ul>
+        <li>Identify clusters of correlated risk (geographic areas, lenders)</li>
+        <li>Diversify to reduce systemic risk</li>
+    </ul>
+
+    <h2>Regulatory Implications</h2>
+    <ul>
+        <li>More sophisticated risk models may be required by regulators</li>
+        <li>Must balance complexity with interpretability</li>
+        <li>Shapley values help explain individual predictions</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1 id="part15">Part 15: Limitations and Future Directions</h1>
+
+    <h2>Current Limitations</h2>
+
+    <h3>1. Data Period</h3>
+    <ul>
+        <li>Focused on 2009-2010 (post-financial crisis)</li>
+        <li>Behavior may differ in other economic conditions</li>
+    </ul>
+
+    <h3>2. Network Construction</h3>
+    <ul>
+        <li>Only geography and lender considered</li>
+        <li>Could include: employer networks, social connections, family ties</li>
+    </ul>
+
+    <h3>3. Computational Cost</h3>
+    <ul>
+        <li>More complex than traditional models</li>
+        <li>Requires specialized hardware (GPUs)</li>
+    </ul>
+
+    <h3>4. Interpretability Trade-off</h3>
+    <ul>
+        <li>More accurate but harder to explain than logistic regression</li>
+        <li>Important in regulated industries</li>
+    </ul>
+
+    <h2>Future Research Directions</h2>
+
+    <h3>1. Additional Network Layers</h3>
+    <ul>
+        <li>Social connections (if privacy-preserving)</li>
+        <li>Employment networks</li>
+        <li>Family relationships</li>
+    </ul>
+
+    <h3>2. Edge Weights</h3>
+    <ul>
+        <li>Currently: connected or not</li>
+        <li>Future: distance-weighted connections (closer geography = stronger connection)</li>
+    </ul>
+
+    <h3>3. Different Time Horizons</h3>
+    <ul>
+        <li>Test with different lookback periods</li>
+        <li>Test with different prediction horizons</li>
+    </ul>
+
+    <h3>4. Other Applications</h3>
+    <ul>
+        <li>Corporate credit (business loans)</li>
+        <li>Consumer credit cards</li>
+        <li>International markets</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1 id="part16">Part 16: Mathematical Notation Guide</h1>
+
+    <h2>Common Symbols</h2>
+
+    <h3>Scalars (single numbers):</h3>
+    <ul>
+        <li><code>t</code>: time index</li>
+        <li><code>n</code>: number of nodes</li>
+        <li><code>l</code>: number of layers</li>
+        <li><code>d</code>: number of features</li>
+        <li><code>D</code>: embedding dimension</li>
+    </ul>
+
+    <h3>Vectors (lists of numbers):</h3>
+    <ul>
+        <li><code>X<sub>i</sub></code>: Features for node i</li>
+        <li><code>a</code>: Learnable weight vector</li>
+        <li><code>b</code>: Bias vector</li>
+    </ul>
+
+    <h3>Matrices (tables of numbers):</h3>
+    <ul>
+        <li><code>X</code>: Feature matrix (all node features)</li>
+        <li><code>A</code>: Adjacency matrix (connections)</li>
+        <li><code>W</code>: Weight matrix (learned parameters)</li>
+        <li><code>Z</code>: Embedding matrix</li>
+        <li><code>H</code>: Hidden state matrix</li>
+        <li><code>C</code>: Memory cell matrix</li>
+    </ul>
+
+    <h2>Operations</h2>
+    <table>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Meaning</th>
+        </tr>
+        <tr>
+            <td>⊙</td>
+            <td>Hadamard product</td>
+            <td>Element-wise multiplication</td>
+        </tr>
+        <tr>
+            <td>·</td>
+            <td>Dot product</td>
+            <td>Matrix multiplication</td>
+        </tr>
+        <tr>
+            <td>||</td>
+            <td>Concatenation</td>
+            <td>Stick together</td>
+        </tr>
+        <tr>
+            <td>Σ</td>
+            <td>Summation</td>
+            <td>Add up</td>
+        </tr>
+        <tr>
+            <td>σ</td>
+            <td>Sigmoid</td>
+            <td>Activation function (0 to 1)</td>
+        </tr>
+        <tr>
+            <td>tanh</td>
+            <td>Hyperbolic tangent</td>
+            <td>Activation function (-1 to 1)</td>
+        </tr>
+        <tr>
+            <td>exp</td>
+            <td>Exponential</td>
+            <td>e raised to a power</td>
+        </tr>
+        <tr>
+            <td>log</td>
+            <td>Logarithm</td>
+            <td>Inverse of exponential</td>
+        </tr>
+    </table>
+
+    <h2>Superscripts/Subscripts</h2>
+    <ul>
+        <li><code>X<sup>(t)</sup></code>: Feature matrix at time t</li>
+        <li><code>X<sub>i</sub></code>: Features of node i</li>
+        <li><code>W<sub>ij</sub></code>: Weight connecting i to j</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1 id="part17">Part 17: Connecting Everything Together</h1>
+
+    <h2>The Big Picture</h2>
+
+    <p><strong>Traditional credit scoring:</strong></p>
+    <div class="formula">
+Features → Statistical Model → Default Prediction
+    </div>
+
+    <p><strong>This paper's approach:</strong></p>
+    <div class="formula">
+Features + Network Structure + Time
+    ↓
+GNN (captures who's connected)
+    ↓
+RNN (captures how things evolve)
+    ↓
+Attention (focuses on important times)
+    ↓
+Neural Network Decoder
+    ↓
+Default Prediction
+    </div>
+
+    <h2>Why Each Component Matters</h2>
+
+    <table>
+        <tr>
+            <th>Without...</th>
+            <th>You Miss...</th>
+        </tr>
+        <tr>
+            <td>GNN</td>
+            <td>Risk propagation through networks</td>
+        </tr>
+        <tr>
+            <td>RNN</td>
+            <td>Temporal trends and evolution</td>
+        </tr>
+        <tr>
+            <td>Attention</td>
+            <td>Ability to emphasize recent behavior</td>
+        </tr>
+        <tr>
+            <td>Multilayer</td>
+            <td>Different types of connections</td>
+        </tr>
+    </table>
+
+    <div class="key-concept">
+        <p><strong>Together:</strong> Most realistic model of credit risk in connected populations</p>
+    </div>
+
+    <h2>Summary of Key Contributions</h2>
+
+    <p>This paper makes three key contributions:</p>
+
+    <ol>
+        <li><strong>Methodological:</strong> First application of dynamic multilayer GNNs to credit risk</li>
+        <li><strong>Empirical:</strong> Demonstrates meaningful performance improvement over traditional methods</li>
+        <li><strong>Practical:</strong> Provides interpretable insights about what drives default risk</li>
+    </ol>
+
+    <div class="key-concept">
+        <p><strong>The core insight:</strong> Credit risk is not just about individual characteristics, but about how borrowers are connected and how those connections evolve over time.</p>
+    </div>
+
+    <h2>Final Thoughts</h2>
+
+    <p>By understanding networks (GNNs), time (RNNs), and importance (attention), we can build more accurate and insightful credit risk models.</p>
+
+    <p>Each component solves a specific challenge in modeling real-world credit risk:</p>
+    <ul>
+        <li><strong>GNNs</strong> handle irregular network structures</li>
+        <li><strong>RNNs</strong> capture temporal evolution</li>
+        <li><strong>Attention</strong> weights information by relevance</li>
+        <li><strong>Multilayer networks</strong> represent multiple types of connections</li>
+    </ul>
+
+    <p>The result is a sophisticated yet interpretable model that outperforms traditional approaches while providing novel insights into the nature of default risk in interconnected lending populations.</p>
+
+    <hr style="margin: 40px 0;">
+
+    <p style="text-align: center; font-style: italic; color: #666;">You should now have the foundation to fully understand the paper.<br>The key is recognizing how each component solves a specific challenge in modeling real-world credit risk.</p>
+
+    <script>
+        // Add print button functionality
+        window.onload = function() {
+            console.log('Teaching document loaded successfully');
+        }
+    </script>
+
+</body>
+</html>

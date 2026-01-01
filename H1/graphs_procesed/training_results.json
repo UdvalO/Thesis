@@ -1,0 +1,6 @@
+{
+    "total_training_time_sec": 16501.580388069153,
+    "best_val_auc": 0.8865825427287906,
+    "epochs_trained": 133,
+    "final_val_f1": 0.5480948957584472
+}
