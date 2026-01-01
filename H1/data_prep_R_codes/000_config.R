@@ -4,10 +4,10 @@
 
 # --- 1. PROJECT ROOT ---
 # Define root path
-PROJECT_ROOT <- "C:\\Users\\udwal\\Documents\\Studies_Viadrina\\Thesis\\H1"
+PROJECT_ROOT <- "...\\H1"
 
-BASE_DIR     <- "C:\\Users\\udwal\\Documents\\Studies_Viadrina\\Thesis\\H1/dataset"   # to load from
-SAVE_DIR     <- "C:\\Users\\udwal\\Documents\\Studies_Viadrina\\Thesis\\H1/data_processed" # to save into
+BASE_DIR     <- "...H1/dataset"   # to load from
+SAVE_DIR     <- "...H1/data_processed" # to save into
 
 # Make sure the save directory exists
 if(!dir.exists(SAVE_DIR)) dir.create(SAVE_DIR, recursive = TRUE)
